@@ -1,4 +1,4 @@
-module.exports = function check(str, bracketsConfig) {
+function check(str, bracketsConfig) {
   let arr = str.split("");
   let stack = [];
   let beginStr = "";
@@ -8,7 +8,10 @@ module.exports = function check(str, bracketsConfig) {
     endStr += item[1];
   }
   for (let item of arr) {
-    if (beginStr.includes(item) && stack.at(-1) !== endStr.includes(item)) {
+    if (
+      beginStr.includes(item) &&
+      endStr.indexOf(item) !== beginStr.indexOf(item)
+    ) {
       stack.push(item);
       continue;
     }
@@ -21,4 +24,6 @@ module.exports = function check(str, bracketsConfig) {
     }
   }
   return stack.length ? false : true;
-};
+}
+
+console.log(check("((()))()", [["(", ")"]]));
