@@ -11,7 +11,7 @@ function check(str, bracketsConfig) {
     if (
       beginStr.includes(item) &&
       stack.at(-1) !==
-        (endStr.includes(item) ? endStr.at(endStr.indexOf(item)) : item)
+        (endStr.includes(item) ? endStr.at(endStr.indexOf(item)) : null)
     ) {
       stack.push(item);
       continue;
@@ -28,8 +28,10 @@ function check(str, bracketsConfig) {
 }
 
 console.log(
-  check("|()|", [
+  check("((()))()", [
     ["(", ")"],
+    ["[", "]"],
+    ["{", "}"],
     ["|", "|"],
   ])
 );

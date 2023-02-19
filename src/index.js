@@ -10,7 +10,8 @@ module.exports = function check(str, bracketsConfig) {
   for (let item of arr) {
     if (
       beginStr.includes(item) &&
-      stack.at(-1) !== endStr.at(endStr.indexOf(item))
+      stack.at(-1) !==
+        (endStr.includes(item) ? endStr.at(endStr.indexOf(item)) : null)
     ) {
       stack.push(item);
       continue;
