@@ -10,7 +10,8 @@ function check(str, bracketsConfig) {
   for (let item of arr) {
     if (
       beginStr.includes(item) &&
-      endStr.indexOf(item) !== beginStr.indexOf(item)
+      stack.at(-1) !==
+        (endStr.includes(item) ? endStr.at(endStr.indexOf(item)) : item)
     ) {
       stack.push(item);
       continue;
@@ -26,4 +27,9 @@ function check(str, bracketsConfig) {
   return stack.length ? false : true;
 }
 
-console.log(check("((()))()", [["(", ")"]]));
+console.log(
+  check("|()|", [
+    ["(", ")"],
+    ["|", "|"],
+  ])
+);
